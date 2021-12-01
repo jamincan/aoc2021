@@ -1,3 +1,5 @@
+use aoc2021::days::*;
+
 fn main() {
-    println!("Hello, world!");
+    println!("Day 1: {}, {}", day1::a(), day1::b());
 }
