@@ -5,11 +5,11 @@ pub fn solve() -> String {
     format!("{}, {}", part1(&data), part2(&data))
 }
 
-pub fn part1(input: &[u64]) -> usize {
+fn part1(input: &[u64]) -> usize {
     input.windows(2).filter(|w| w[1] > w[0]).count()
 }
 
-pub fn part2(input: &[u64]) -> usize {
+fn part2(input: &[u64]) -> usize {
     input.windows(4).filter(|w| w[3] > w[0]).count()
 }
 
@@ -35,13 +35,13 @@ mod tests {
                          260
                          263";
     #[test]
-    fn part1() {
+    fn test1() {
         let input = parse(INPUT);
         assert_eq!(part1(&input), 7);
     }
 
     #[test]
-    fn part_b() {
+    fn test2() {
         let input = parse(INPUT);
         assert_eq!(part2(&input), 5);
     }
