@@ -1,12 +1,10 @@
-use aoc2021::days::*;
-use aoc2021::tools::get_input;
+use aoc2021::*;
 
 fn main() {
-    let solutions = [(day1::a, day1::b)];
+    let solutions = [day1::solve];
 
-    for (day, (a, b)) in solutions.iter().enumerate() {
+    for (day, solve) in solutions.iter().enumerate() {
         let day = day + 1;
-        let data = get_input(day);
-        println!("Day {}: {}, {}", day, a(&data), b(&data));
+        println!("Day {}: {}", day, solve());
     }
 }

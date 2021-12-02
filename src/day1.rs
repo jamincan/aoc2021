@@ -1,12 +1,16 @@
-pub fn a(input: &str) -> usize {
-    let numbers = parse(input);
-    numbers.windows(2).filter(|w| w[1] > w[0]).count()
+const INPUT: &str = include_str!("./assets/day1.txt");
+
+pub fn solve() -> String {
+    let data = parse(INPUT);
+    format!("{}, {}", part1(&data), part2(&data))
 }
 
-pub fn b(input: &str) -> usize {
-    let numbers = parse(input);
-    let windows: Vec<u64> = numbers.windows(3).map(|w| w.iter().sum()).collect();
-    windows.windows(2).filter(|w| w[1] > w[0]).count()
+pub fn part1(input: &[u64]) -> usize {
+    input.windows(2).filter(|w| w[1] > w[0]).count()
+}
+
+pub fn part2(input: &[u64]) -> usize {
+    input.windows(4).filter(|w| w[3] > w[0]).count()
 }
 
 fn parse(input: &str) -> Vec<u64> {
@@ -31,12 +35,14 @@ mod tests {
                          260
                          263";
     #[test]
-    fn part_a() {
-        assert_eq!(a(INPUT), 7);
+    fn part1() {
+        let input = parse(INPUT);
+        assert_eq!(part1(&input), 7);
     }
 
     #[test]
     fn part_b() {
-        assert_eq!(b(INPUT), 5);
+        let input = parse(INPUT);
+        assert_eq!(part2(&input), 5);
     }
 }
