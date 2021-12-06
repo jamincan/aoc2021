@@ -1,10 +1,10 @@
 use itertools::Itertools;
-use std::{convert::TryInto, iter::FromIterator};
+use std::convert::TryInto;
 
 const INPUT: &str = include_str!("./assets/day4.txt");
 
 pub fn solve() -> String {
-    let (random, mut boards) = parse(INPUT);
+    let (random, boards) = parse(INPUT);
     format!(
         "{}, {}",
         part1(&random, &mut boards.clone()),
@@ -55,14 +55,6 @@ impl PartialEq<u64> for Number {
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 struct BingoBoard {
     board: [[Number; 5]; 5],
-}
-
-impl std::fmt::Display for BingoBoard {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let board = self.board.iter().map(|row| row.iter().join(" ")).join("\n");
-        f.write_str(&board)?;
-        Ok(())
-    }
 }
 
 impl BingoBoard {
@@ -129,50 +121,6 @@ fn parse(input: &str) -> (Vec<u64>, Vec<BingoBoard>) {
     (random, boards)
 }
 
-fn print_row(board: &[[Number; 5]; 5], row: usize) {
-    print!(
-        "{} {} {} {} {}",
-        board[row][0], board[row][1], board[row][2], board[row][3], board[row][4]
-    );
-}
-
-fn print_boards(boards: &[BingoBoard]) {
-    if boards.len() == 3 {
-        print_row(&boards[0].board, 0);
-        print!("   ");
-        print_row(&boards[1].board, 0);
-        print!("   ");
-        print_row(&boards[2].board, 0);
-        print!("\n");
-        print_row(&boards[0].board, 1);
-        print!("   ");
-        print_row(&boards[1].board, 1);
-        print!("   ");
-        print_row(&boards[2].board, 1);
-        print!("\n");
-        print_row(&boards[0].board, 2);
-        print!("   ");
-        print_row(&boards[1].board, 2);
-        print!("   ");
-        print_row(&boards[2].board, 2);
-        print!("\n");
-        print_row(&boards[0].board, 3);
-        print!("   ");
-        print_row(&boards[1].board, 3);
-        print!("   ");
-        print_row(&boards[2].board, 3);
-        print!("\n");
-        print_row(&boards[0].board, 4);
-        print!("   ");
-        print_row(&boards[1].board, 4);
-        print!("   ");
-        print_row(&boards[2].board, 4);
-        print!("\n");
-    } else {
-        println!("BingoBoard with length {}", boards.len());
-    }
-}
-
 fn part1(random: &[u64], boards: &mut [BingoBoard]) -> u64 {
     for num in random {
         for board in boards.iter_mut() {
@@ -188,7 +136,6 @@ fn part1(random: &[u64], boards: &mut [BingoBoard]) -> u64 {
 fn part2(random: &[u64], boards: &[BingoBoard]) -> u64 {
     let mut boards: Vec<_> = boards.iter().map(|b| (true, *b)).collect();
     for num in random {
-        println!("Num: {}", num);
         let mut current_index = None;
         for (index, (active, board)) in boards.iter_mut().enumerate().filter(|(_, (a, _))| *a) {
             board.mark(*num);
@@ -197,11 +144,8 @@ fn part2(random: &[u64], boards: &[BingoBoard]) -> u64 {
                 current_index = Some(index);
             }
         }
-        println!("CI: {:?}", current_index);
         if !boards.iter().any(|(a, _)| *a) {
             let (_, board) = boards[current_index.unwrap()];
-            println!("Num {}", num);
-            println!("{}", &board);
             return num * board.score();
         }
     }
