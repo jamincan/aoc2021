@@ -3,7 +3,7 @@ use std::collections::HashMap;
 use arrayvec::ArrayVec;
 use itertools::Itertools;
 
-const INPUT: &str = include_str!("./assets/day7.txt");
+const INPUT: &str = include_str!("./assets/day8.txt");
 
 pub fn solve() -> String {
     let readings = parse(INPUT);
