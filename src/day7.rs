@@ -181,11 +181,19 @@ mod tests {
 
     #[test]
     fn test1() {
+<<<<<<< HEAD
         assert_eq!(part1(&parse(EXAMPLE2)), 26);
+=======
+        assert_eq!(part1(&mut parse(INPUT)), 37);
+>>>>>>> refs/remotes/origin/main
     }
 
     #[test]
     fn test2() {
+<<<<<<< HEAD
         assert_eq!(part2(&parse(EXAMPLE2)), 61229);
+=======
+        assert_eq!(part2(&parse(INPUT)), 168);
+>>>>>>> refs/remotes/origin/main
     }
 }
