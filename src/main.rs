@@ -10,6 +10,7 @@ fn main() {
         day6::solve,
         day7::solve,
         day8::solve,
+        day9::solve,
     ];
 
     for (day, solve) in solutions.iter().enumerate() {
