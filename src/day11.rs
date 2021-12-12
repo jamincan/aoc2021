@@ -18,8 +18,7 @@ fn part1(grid: &mut Grid) -> u32 {
 }
 
 fn part2(grid: &mut Grid, max: u32) -> u32 {
-    let step = (1..=max).find(|_| grid.tick() == 100).unwrap();
-    step
+    (1..=max).find(|_| grid.tick() == 100).unwrap()
 }
 
 #[derive(Clone, Debug, PartialEq)]
