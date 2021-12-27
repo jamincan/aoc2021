@@ -21,7 +21,7 @@ fn build_map(input: &str) -> CaveMap {
     map
 }
 
-fn part1<'map>(map: &CaveMap<'map>) -> usize {
+fn part1(map: &CaveMap) -> usize {
     let mut partial_paths = vec![vec!["start"]];
     let mut complete_paths = Vec::new();
     while let Some(path) = partial_paths.pop() {
@@ -47,7 +47,7 @@ fn part1<'map>(map: &CaveMap<'map>) -> usize {
     complete_paths.len()
 }
 
-fn part2<'map>(map: &CaveMap<'map>) -> usize {
+fn part2(map: &CaveMap) -> usize {
     let mut partial_paths = vec![(vec!["start"], false)];
     let mut complete_paths = Vec::new();
     while let Some((path, small_visited)) = partial_paths.pop() {
