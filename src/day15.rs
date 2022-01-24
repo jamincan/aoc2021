@@ -31,7 +31,7 @@ impl Ord for Node {
 
 impl PartialOrd for Node {
     fn partial_cmp(&self, other: &Self) -> Option<std::cmp::Ordering> {
-        Some(self.cmp(&other))
+        Some(self.cmp(other))
     }
 }
 
@@ -100,15 +100,6 @@ fn shortest_path(grid: &Array2D<u32>, start: Coordinate, goal: Coordinate) -> Op
     }
 
     None
-}
-
-fn print_array(array: &Array2D<u32>, col_width: usize) {
-    for row in array.rows_iter() {
-        for digit in row {
-            print!("{digit:>col_width$}");
-        }
-        println!();
-    }
 }
 
 fn adjacent(position: Coordinate, width: usize, height: usize) -> impl Iterator<Item = Coordinate> {
